@@ -1,6 +1,3 @@
-#-- coding:utf-8 --
-#encoding=utf-8
-
 '''
 下载序列文件以及整理导出csv——
     你可以引用的库：

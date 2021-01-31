@@ -1,6 +1,3 @@
-#-- coding:utf-8 --
-#encoding=utf-8
-
 '''
 对导出的csv进行整理——
     你可以引用的库：

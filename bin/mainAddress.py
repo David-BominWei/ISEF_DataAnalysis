@@ -22,3 +22,10 @@ temp_Maincsv = "temp/main.csv"
 #datafile address
 File_MainDataFile = "Files/dataFile/MainDataFile.csv"
 File_StaDatafile = "Files/dataFile/StaDatafile.csv"
+File_Mutation_MainDataFile = "Files/dataFile/mutationdataFile/mutationMainDataFile.csv"
+File_Mutation_RegionSamplesCount = "Files/dataFile/mutationdataFile/samplesCount.dict"
+File_Mutation_LocusDataFile = "Files/dataFile/mutationdataFile/mutationLocusDataFile.csv"
+File_Mutation_HighRateLocus = "Files/dataFile/mutationdataFile/mutationHighRateLocus.csv"
+
+#stafile address
+sta_countries = "Files/staFile/countries.json"
