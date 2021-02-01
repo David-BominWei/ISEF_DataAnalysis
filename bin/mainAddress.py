@@ -3,7 +3,7 @@
     主要调用地址——
 
 '''
-print("正在调用mainAddress")
+print("常mainAddress")
 
 import os
 
@@ -26,6 +26,10 @@ File_Mutation_MainDataFile = "Files/dataFile/mutationdataFile/mutationMainDataFi
 File_Mutation_RegionSamplesCount = "Files/dataFile/mutationdataFile/samplesCount.dict"
 File_Mutation_LocusDataFile = "Files/dataFile/mutationdataFile/mutationLocusDataFile.csv"
 File_Mutation_HighRateLocus = "Files/dataFile/mutationdataFile/mutationHighRateLocus.csv"
+Folder_Mutation_RigionClassified = "Files/dataFile/regiondataFile/"
 
 #stafile address
 sta_countries = "Files/staFile/countries.json"
+
+#fig output address
+FigFolder_Mutation_HighRateMutationFig = "Files/figureOutPut/"

@@ -2,6 +2,7 @@
 导出各个位点的频率以及高发位点——
     你可以引用的库：
         getMutationDatafile():对所有mutation文件整理输出，耗时较短所以同时进行
+		getLocationCategoryFile():对所有地区进行分类，分别输出各个地区的变异情况文件
 
 '''
 print("正在调用getLocRig")
@@ -16,6 +17,7 @@ from bin.mainAddress import File_Mutation_MainDataFile
 from bin.mainAddress import File_Mutation_RegionSamplesCount
 from bin.mainAddress import File_Mutation_LocusDataFile
 from bin.mainAddress import File_Mutation_HighRateLocus
+from bin.mainAddress import Folder_Mutation_RigionClassified as rigionFilePath
 
 #读取json文件 存储国家到大洲关系到字典里
 country2continent = {}
@@ -38,6 +40,7 @@ country2continent["Viet Nam"] = 'Asia'
 #读取csv计算频率
 variant_count = {} #存储每个位点在各个大洲的序列数到字典里
 region_count = {} #存储每个大洲的序列数到字典里
+data_count = {'Africa':[],'Asia':[],'Europe':[],'North America':[],'Oceania':[],'South America':[]}
 with open(dataFile) as f:
 	f_csv = csv.reader(f)
 	for line in f_csv:
@@ -50,14 +53,16 @@ with open(dataFile) as f:
 					continent = country2continent[country]
 					if continent not in region_count:
 						region_count[continent] = 0
+						data_count[continent] = []
 					region_count[continent] += 1
+					data_count[continent].append(line)
 					for variant in line[3:]:
 						if variant not in variant_count:
 							variant_count[variant] = {'Africa':0,'Asia':0,'Europe':0,'North America':0,'Oceania':0,'South America':0}
 						variant_count[variant][continent] += 1
 
 locus_var_list = []
-for i in range(30000):
+for i in range(29904):
 	locus_var_list.append({'Africa':0,'Asia':0,'Europe':0,'North America':0,'Oceania':0,'South America':0})
 
 for i in list(variant_count.keys()):
@@ -78,16 +83,16 @@ def getMutationDatafile():
 	hc = open(File_Mutation_HighRateLocus,'w')
 
 	highratecount = {'Africa':[],'Asia':[],'Europe':[],'North America':[],'Oceania':[],'South America':[],'Total':[]}
-	for i in range(30000):
+	for i in range(29904):
 		lc.write(str(i) + ',' +  str(int(locus_var_list[i]['Africa'])/region_count['Africa']) + ',' +  str(int(locus_var_list[i]['Asia'])/region_count['Asia']) +  ',' +  str(int(locus_var_list[i]['Europe'])/region_count['Europe']) + ',' + str(int(locus_var_list[i]['North America'])/region_count['North America']) + ',' +  str(int(locus_var_list[i]['Oceania'])/region_count['Oceania']) + ',' + str(int(locus_var_list[i]['South America'])/region_count['South America']) + '\n')
 	
 		entire = [0,0]
 		for j in list(locus_var_list[i].keys()):
-			if int(locus_var_list[i][j]) / region_count[j] >= 0.01:
+			if int(locus_var_list[i][j]) / region_count[j] >= 0.001:
 				highratecount[j].append(i)
 			entire[0] += locus_var_list[i][j]
 			entire[1] += region_count[j]
-		if entire[0] / entire[1] >= 0.01:
+		if entire[0] / entire[1] >= 0.001:
 			highratecount['Total'].append(i)
 
 	for i in list(highratecount.keys()):
@@ -104,5 +109,16 @@ def getMutationDatafile():
 		vc.write('%s,%s,%s,%s,%s,%s,%s\n' % (variant,str(variant_count[variant]['Africa']/region_count['Africa']),str(variant_count[variant]['Asia']/region_count['Asia']),str(variant_count[variant]['Europe']/region_count['Europe']),str(variant_count[variant]['North America']/region_count['North America']),str(variant_count[variant]['Oceania']/region_count['Oceania']),str(variant_count[variant]['South America']/region_count['South America'])))
 	vc.close()
 
+def getLocationCategoryFile():
+	for i in list(data_count.keys()):
+		cc = open(rigionFilePath + i + ".csv", 'w')
+		for j in data_count[i]:
+			for k in j:
+				cc.write(str(k) + ',')
+			cc.write('\n')
+
+
+
 if __name__ == "__main__":
 	getMutationDatafile()
+	getLocationCategoryFile()
