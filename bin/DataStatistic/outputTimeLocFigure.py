@@ -19,7 +19,7 @@ from bin.mainAddress import File_Mutation_HighRateLocus
 from bin.mainTimedate import getTime1
 from bin.mainTimedate import Lastday
 
-continent = "Europe"
+continent = "South America"
 
 
 
@@ -67,7 +67,10 @@ for i in list(locus_time_count.keys()):
     for j in locus_time_count[i]:
         if total_variant_count[n_] != 0:
             rate_.append(j/total_variant_count[n_])
+        else:
+            rate_.append(np.nan)
         n_ += 1
+
     if np.nanmax(rate_) >= 0.1:
         writer.writerow([i] + rate_)
         plt.plot(rate_)

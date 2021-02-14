@@ -28,8 +28,10 @@ File_Mutation_LocusDataFile = "Files/dataFile/mutationdataFile/mutationLocusData
 File_Mutation_HighRateLocus = "Files/dataFile/mutationdataFile/mutationHighRateLocus.csv"
 Folder_Mutation_RigionClassified = "Files/dataFile/regiondataFile/"
 
+
 #stafile address
 sta_countries = "Files/staFile/countries.json"
 
 #fig output address
-FigFolder_Mutation_HighRateMutationFig = "Files/figureOutPut/"
+FigFolder_Mutation_HighRateMutationFig = "Files/stafigureOutPut/"
+FigFolder_Mutation_PredictionARIMA1 = "Files/prefigureOutPut_1a/"
