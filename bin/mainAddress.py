@@ -27,7 +27,7 @@ File_Mutation_RegionSamplesCount = "Files/dataFile/mutationdataFile/samplesCount
 File_Mutation_LocusDataFile = "Files/dataFile/mutationdataFile/mutationLocusDataFile.csv"
 File_Mutation_HighRateLocus = "Files/dataFile/mutationdataFile/mutationHighRateLocus.csv"
 Folder_Mutation_RigionClassified = "Files/dataFile/regiondataFile/"
-
+Folder_Mutation_RigionHighRate = "Files/dataFile/regiondataFile/highRate/"
 
 #stafile address
 sta_countries = "Files/staFile/countries.json"

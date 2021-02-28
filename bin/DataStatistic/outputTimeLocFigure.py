@@ -19,7 +19,7 @@ from bin.mainAddress import File_Mutation_HighRateLocus
 from bin.mainTimedate import getTime1
 from bin.mainTimedate import Lastday
 
-continent = "South America"
+continent = "Europe"
 
 
 
@@ -56,6 +56,14 @@ with open(rigionFilePath + continent + ".csv") as f:
 
 if os.path.exists(FigFolder_Mutation_HighRateMutationFig + continent) is False:
     os.mkdir(FigFolder_Mutation_HighRateMutationFig + continent)
+
+with open(FigFolder_Mutation_HighRateMutationFig + continent + '/' + "total.csv",'w') as dc:
+    totalwriter  = csv.writer(dc)
+    totalwriter.writerow(total_variant_count)
+
+plt.plot(total_variant_count)
+plt.savefig(FigFolder_Mutation_HighRateMutationFig + continent + '/totalcount.jpg')
+plt.cla()
 
 fc = open(FigFolder_Mutation_HighRateMutationFig + continent + '/' + "data.csv",'w')
 writer  = csv.writer(fc)

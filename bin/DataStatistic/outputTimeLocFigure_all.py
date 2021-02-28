@@ -55,8 +55,18 @@ with open(mainDataFile) as f:
 if os.path.exists(FigFolder_Mutation_HighRateMutationFig + "all") is False:
     os.mkdir(FigFolder_Mutation_HighRateMutationFig + "all")
 
+
+with open(FigFolder_Mutation_HighRateMutationFig + "all" + '/' + "total.csv",'w') as dc:
+    totalwriter  = csv.writer(dc)
+    totalwriter.writerow(total_variant_count)
+
+plt.plot(total_variant_count)
+plt.savefig(FigFolder_Mutation_HighRateMutationFig + "all" + '/' + '/totalcount.jpg')
+plt.cla()
+
 fc = open(FigFolder_Mutation_HighRateMutationFig + "all" + '/' + "data.csv",'w')
 writer  = csv.writer(fc)
+
 
 for i in list(locus_time_count.keys()):
     path = FigFolder_Mutation_HighRateMutationFig + "all" + '/' + str(i) + '.jpg'
@@ -74,4 +84,5 @@ for i in list(locus_time_count.keys()):
     plt.plot(rate_)
     plt.savefig(path)
     plt.cla()
+
 
